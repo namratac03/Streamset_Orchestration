@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="SlNo">
+    <th mat-header-cell *matHeaderCellDef> Sl No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.SlNo}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Pipeline">
+    <th mat-header-cell *matHeaderCellDef> Pipeline </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="PipelineId">
+    <th mat-header-cell *matHeaderCellDef> Pipeline ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.pipelineId}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element"><button (click)="generateTopology(element)"
+        [disabled]="disableSelection">{{element.action}} </button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+
+<div>
+  <p>{{selectedTopology}}</p>
+  <button (click)="selectNextPipeline()" [disabled]="disablediv">Select Next</button>
+  <button (click)="createTopology()" [disabled]="disablediv">Create Topology</button>
+</div>
